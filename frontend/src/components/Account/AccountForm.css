@@ -1,0 +1,72 @@
+.container {
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.07);
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tab-box {
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.login-tab, .signup-tab {
+    color: wheat;
+    border: none;
+    padding: 20px 0;
+    cursor: pointer;
+    font-size: 19px;
+    width: 50%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.032);
+}
+
+.login-tab {
+    border-right: 2px solid black;
+
+}
+
+.login-tab:hover, .signup-tab:hover {
+    box-shadow: 0 1px ;
+    border-bottom: 2px solid wheat;
+}
+
+.signup-window {
+    display: none;
+}
+
+.login-window {
+    display: flex;
+}
+
+.login-window, .signup-window {
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10%;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+}
+
+.inputs {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.submit-btn {
+    background-color: wheat;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+    background-color: rgba(245, 222, 179, 0.934);
+}
