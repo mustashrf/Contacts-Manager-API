@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 from django.core.cache import cache
 from django.db import transaction
-# from time import sleep
 
 
 @api_view(['POST'])
@@ -30,15 +29,15 @@ def create_contact(request):
 def update_contact(request):
     try:
         name = request.data.get('name')
-        instance = Contact.objects.get(name=name)
-
+        instance = Contact.objects.select_for_update().get(name=name)
+        # import pdb; pdb.set_trace()
         data = request.data.copy()
         data.update({'updated_by': request.user.id})
 
         serializer = ContactUpdateSerializer(instance=instance, data=data, partial=True)
         
         if serializer.is_valid():
-            # sleep(10) to test database lock!
+            # from time import sleep; sleep(30)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
 
