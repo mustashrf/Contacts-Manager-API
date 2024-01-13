@@ -1,5 +1,5 @@
 import './App.css';
-import AccountForm from './Account/AccountForm';
+import AccountForm from './components/Account/AccountForm';
 
 function App() {
   return (
