@@ -20,7 +20,7 @@ class UserView(generics.ListCreateAPIView):
 @transaction.atomic
 def update_user(request):
 
-    instance = CustomUser.objects.get(email=request.user.email)
+    instance = CustomUser.objects.select_for_update().get(email=request.user.email)
     serializer = UserSerializer(instance=instance, data=request.data, partial=True)
     
     if serializer.is_valid():
