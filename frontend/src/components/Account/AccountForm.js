@@ -105,7 +105,7 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br />
-                        <input className="submit-btn" type="submit" value='Login'/><br></br>
+                        <input className="submit-btn" type="submit" value='Signup'/><br></br>
                     </form>
                 </div>
             </div>
