@@ -80,17 +80,18 @@ def delete_contact(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def search_contact(request):
-    data = cache.get('contacts_list')
-    if not data:
-        data = Contact.objects.all()
-        cache.set('contacts_list', data)
-
     search_query = request.GET.get('query', '')
 
-    result = data.filter(
-        Q(name__icontains=search_query) |
-        Q(phone__icontains=search_query) |
-        Q(email__icontains=search_query)
-    )
+    result = cache.get(search_query)
+
+    if not result:
+        result = Contact.objects.filter(
+            Q(name__icontains=search_query) |
+            Q(phone__icontains=search_query) |
+            Q(email__icontains=search_query)
+        )
+
+        cache.set(search_query, result)
+
     serializer = ContactSerializer(result, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
