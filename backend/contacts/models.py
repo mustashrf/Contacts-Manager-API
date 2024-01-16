@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 
 def validate_phone_number(phone):
-    if phone[0] != '0' or len(phone) not in (8, 11):
+    if phone[0] != '0' or len(phone) not in (8, 10, 11):
         raise ValidationError('incorrect phone number')
 
 class Contact(models.Model):
