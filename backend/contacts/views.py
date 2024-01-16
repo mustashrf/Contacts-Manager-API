@@ -1,5 +1,5 @@
 from .serializer import ContactSerializer, ContactUpdateSerializer
-from .models import Contact
+from .models import Contact, get_user_model
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
@@ -13,7 +13,9 @@ from django.db import transaction
 @permission_classes([IsAuthenticated])
 def create_contact(request):
     data = request.data.copy()
-    data.update({'created_by': request.user.id, 'updated_by': request.user.id})
+    user = get_user_model().objects.get(id=request.user.id)
+
+    data.update({'created_by': user, 'updated_by': user})
 
     serializer = ContactSerializer(data=data)
 
