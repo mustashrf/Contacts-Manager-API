@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './AccountForm.css'
 import AuthService from '../../Services/auth.service'
 
-export default function Login() {
+export default function Login({setIsAuthenticated}) {
 
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('');
@@ -15,14 +15,13 @@ export default function Login() {
     };
 
     async function handleLogin(e) {
-    
+
         e.preventDefault();
 
         try {
             const response = await AuthService.login(email, password);
             console.log('Login successful:', response);
-
-            // Redirect or update the UI as needed
+            setIsAuthenticated(true)
         } catch (error) {
             document.querySelectorAll('.login-window .inputs').forEach(e => e.style.backgroundColor = '#FFCDD2');
         }
@@ -34,19 +33,20 @@ export default function Login() {
         try {
             const response = await AuthService.register(firstName, lastName, email, password);
             console.log('signup successful:', response);
-        } catch(error) {
+            displayUserForm('flex', 'none');
+        } catch (error) {
             document.querySelectorAll('.signup-window .inputs').forEach(e => e.style.backgroundColor = '#FFCDD2');
         }
     }
 
     return (
-        <div className="container">
-    
+        <div className="account-container">
+
             <div className="tab-box">
-                <span className="login-tab" onClick={()=>displayUserForm('flex', 'none')}>LOGIN</span>
-                <span className="signup-tab" onClick={()=>displayUserForm('none', 'flex')}>SIGN UP</span>
+                <span className="login-tab" onClick={() => displayUserForm('flex', 'none')}>LOGIN</span>
+                <span className="signup-tab" onClick={() => displayUserForm('none', 'flex')}>SIGN UP</span>
             </div>
-    
+
             <div className="content">
                 <div className="login-window">
                     <h1>Login to your account</h1>
@@ -67,7 +67,7 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br />
-                        <input className="submit-btn" type="submit" value='Login'/><br></br>
+                        <input className="submit-btn" type="submit" value='Login' /><br></br>
                     </form>
                 </div>
                 <div className="signup-window">
@@ -105,7 +105,7 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br />
-                        <input className="submit-btn" type="submit" value='Signup'/><br></br>
+                        <input className="submit-btn" type="submit" value='Signup' /><br></br>
                     </form>
                 </div>
             </div>
@@ -113,4 +113,3 @@ export default function Login() {
         </div>
     )
 }
-
