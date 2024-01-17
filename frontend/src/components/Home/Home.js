@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Home.css'
 import AuthService from '../../Services/auth.service'
 
-function Home() {
+function Home({setIsAuthenticated}) {
 
     const [bearerToken, setBearerToken] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
@@ -79,6 +79,17 @@ function Home() {
                 <button className='action-btn'>Create</button>
                 <button className='action-btn'>Update</button>
                 <button className='action-btn'>Delete</button>
+                <button 
+                className="action-btn"
+                onClick={
+                    () => {
+                        AuthService.logout();
+                        setIsAuthenticated(false);
+                    }
+                }
+                >
+                    Logout
+                </button>
             </div>
         </div>
     )

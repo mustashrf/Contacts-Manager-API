@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <div className="container">
         {console.log(isAuthenticated)}
-        {isAuthenticated ? <Home /> : <AccountForm setIsAuthenticated={setIsAuthenticated}/>}
+        {isAuthenticated ? <Home setIsAuthenticated={setIsAuthenticated}/> : <AccountForm setIsAuthenticated={setIsAuthenticated}/>}
       </div>
     </div>
   );
