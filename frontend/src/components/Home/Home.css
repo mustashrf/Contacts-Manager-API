@@ -1,0 +1,52 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.search-box {
+    padding-left: 10px;
+    border-radius: 10px;
+    width: 70%;
+    height: 5%;
+    margin-top: 3%;
+}
+
+.contacts-list {
+    overflow: auto;
+    height: 70%;
+    width: 95%;
+    background-color: rgba(0, 0, 0, 0.16);
+}
+
+.contacts-list table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.contacts-list table th, .contacts-list table td {
+    border: 2px solid rgba(255, 255, 255, 0.37);
+}
+
+.actions-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    background-color: rgba(0, 0, 0, 0.188);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.action-btn {
+    border: none;
+    border-radius: 7px;
+    width: 20%;
+    height: 45%;
+    background-color: wheat;
+}
