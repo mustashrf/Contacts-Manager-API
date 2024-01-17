@@ -102,7 +102,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DB_INFO = {}
 
-if config('DB_DEVELOPMENT_MODE') == 1:
+if config('DB_TYPE') == 'sqlite3':
     DB_INFO = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
