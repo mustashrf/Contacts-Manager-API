@@ -1,11 +1,5 @@
-.container {
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.07);
-    width: 50%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.account-container {
+    width: 100%;
 }
 
 .tab-box {
@@ -28,10 +22,15 @@
 
 .login-tab {
     border-right: 2px solid black;
+    border-top-left-radius: 20px;
+}
 
+.signup-tab {
+    border-top-right-radius: 20px;
 }
 
 .login-tab:hover, .signup-tab:hover {
+    background-color: rgba(0, 0, 0, 0);
     box-shadow: 0 1px ;
     border-bottom: 2px solid wheat;
 }
@@ -47,13 +46,14 @@
 .login-window, .signup-window {
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 10%;
+    align-items: center;
 }
 
 .user-form {
     display: flex;
     flex-direction: column;
     margin-top: 5%;
+    width: 35%;
 }
 
 .inputs, .submit-btn {
