@@ -1,3 +1,5 @@
 # Contacts Manager API
 
-![Main page](./git-assets/main_page.gif)
+<p align="center">
+  <img src="./git-assets/main_page.gif" alt="main_page">
+</p>
