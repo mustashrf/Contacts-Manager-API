@@ -49,11 +49,16 @@
     align-items: center;
 }
 
+h1 {
+    width: 100%;
+    text-align: center;
+}
+
 .user-form {
     display: flex;
     flex-direction: column;
     margin-top: 5%;
-    width: 35%;
+    width: 45%;
 }
 
 .inputs, .submit-btn {
