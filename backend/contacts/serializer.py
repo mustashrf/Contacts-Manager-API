@@ -13,4 +13,7 @@ class ContactSerializer(serializers.ModelSerializer):
 class ContactUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
-        fields = ['name', 'phone', 'email', 'updated_by']
+        fields = ['id', 'name', 'phone', 'email', 'updated_by', 'updated_at']
+        extra_kwargs = {
+            'updated_at': {'read_only': True},
+        }
