@@ -30,8 +30,8 @@ def create_contact(request):
 @transaction.atomic
 def update_contact(request):
     try:
-        name = request.data.get('name')
-        instance = Contact.objects.select_for_update().get(name=name)
+        id = request.data.get('id')
+        instance = Contact.objects.select_for_update().get(id=id)
         # import pdb; pdb.set_trace()
         data = request.data.copy()
         data.update({'updated_by': request.user})
