@@ -8,9 +8,9 @@ def validate_phone_number(phone):
         raise ValidationError('incorrect phone number')
 
 class Contact(models.Model):
-    name = models.CharField(max_length=100, unique=True, null=False)
+    name = models.CharField(max_length=100)
     email = models.EmailField(max_length=254, null=True, blank=True)
-    phone = models.CharField(max_length=11, validators=[validate_phone_number], unique=True, null=False)
+    phone = models.CharField(max_length=11, validators=[validate_phone_number])
     created_by = models.ForeignKey(
         get_user_model(), on_delete=models.SET_NULL, related_name='created_contact',
         blank=True, null=True, db_column='created_by', to_field='email',
