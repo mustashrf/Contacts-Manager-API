@@ -29,7 +29,7 @@
 }
 
 .contacts-list table th, .contacts-list table td {
-    border: 2px solid rgba(255, 255, 255, 0.37);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.37);
 }
 
 .actions-container {

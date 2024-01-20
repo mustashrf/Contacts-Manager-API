@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from 'react'
-import './Home.css'
+import './style/Home.css'
 import AuthService from '../../Services/auth.service'
+import ContactPopup from './ContactPopup';
 
-function Home({setIsAuthenticated}) {
+function Home({ setIsAuthenticated }) {
 
     const [bearerToken, setBearerToken] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [contacts, setContacts] = useState([]);
+
+    const [selectedContact, setSelectedContact] = useState(null);
+    const [isPopupVisible, setPopupVisible] = useState(false);
+
+    const handleRowClick = (contact) => {
+        setSelectedContact(contact);
+        setPopupVisible(true);
+    };
+
+    const handleCreateClick = () => {
+        setSelectedContact(null);
+        setPopupVisible(true);
+    };
+
+    const handlePopupClose = () => {
+        setPopupVisible(false);
+    };
 
     const fetchContacts = async (query) => {
         try {
@@ -61,36 +79,53 @@ function Home({setIsAuthenticated}) {
                         </tr>
                     </thead>
                     <tbody>
-                        {contacts.map((contact) => (
-                            <tr key={contact.id}>
-                                <td>{contact.name}</td>
-                                <td>{contact.phone}</td>
-                                <td>{contact.email}</td>
-                                <td>{contact.created_by}</td>
-                                <td>{contact.created_at}</td>
-                                <td>{contact.updated_by}</td>
-                                <td>{contact.updated_at}</td>
-                            </tr>
-                        ))}
+                        {
+                            contacts.length > 0 ? (
+                                contacts.map((contact) => (
+                                    <tr key={contact.id} onClick={() => handleRowClick(contact)}>
+                                        <td>{contact.name}</td>
+                                        <td>{contact.phone}</td>
+                                        <td>{contact.email}</td>
+                                        <td>{contact.created_by}</td>
+                                        <td>{contact.created_at}</td>
+                                        <td>{contact.updated_by}</td>
+                                        <td>{contact.updated_at}</td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="7">No contacts available</td>
+                                </tr>
+                            )
+                        }
                     </tbody>
                 </table>
             </div>
             <div className="actions-container">
-                <button className='action-btn'>Create</button>
-                <button className='action-btn'>Update</button>
-                <button className='action-btn'>Delete</button>
-                <button 
-                className="action-btn"
-                onClick={
-                    () => {
-                        AuthService.logout();
-                        setIsAuthenticated(false);
+                <button className='action-btn' onClick={handleCreateClick}>Create</button>
+                <button
+                    className="action-btn"
+                    onClick={
+                        () => {
+                            AuthService.logout();
+                            setIsAuthenticated(false);
+                        }
                     }
-                }
                 >
                     Logout
                 </button>
             </div>
+
+            {isPopupVisible && (
+                <ContactPopup
+                    bearerToken={bearerToken}
+                    selectedContact={selectedContact}
+                    contacts={contacts}
+                    setContacts={setContacts}
+                    closePopup={handlePopupClose}
+                />
+            )}
+
         </div>
     )
 }
