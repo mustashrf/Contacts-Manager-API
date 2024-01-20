@@ -34,7 +34,7 @@ def update_contact(request):
         instance = Contact.objects.select_for_update().get(name=name)
         # import pdb; pdb.set_trace()
         data = request.data.copy()
-        data.update({'updated_by': request.user.id})
+        data.update({'updated_by': request.user})
 
         serializer = ContactUpdateSerializer(instance=instance, data=data, partial=True)
         
